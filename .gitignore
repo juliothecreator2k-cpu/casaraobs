@@ -1,0 +1,30 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Dependências e builds (caso venham a ser usados)
+node_modules/
+dist/
+.cache/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+
+# Logs e temporários
+*.log
+npm-debug.log*
+*.tmp
+
+# Hospedagem
+.netlify/
+.vercel/

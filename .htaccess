@@ -1,0 +1,13 @@
+# Hostinger, cPanel e outros servidores Apache
+# (no Netlify este arquivo é ignorado: o 404.html já é usado automaticamente)
+
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+
+# Não lista o conteúdo das pastas
+Options -Indexes
+
+# Bloqueia arquivos internos do projeto
+<FilesMatch "^(\.git.*|LEIA-ME\.md)$">
+  Require all denied
+</FilesMatch>
