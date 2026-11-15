@@ -170,6 +170,12 @@ em {
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+/* Em toque, a textura fixa sobre a página inteira é recomposta a cada quadro de rolagem */
+@media (hover: none), (max-width: 1023px) {
+  .grain {
+    display: none;
+  }
+}
 .btn {
   --btn-bg: var(--olive);
   --btn-fg: var(--cream);
@@ -1255,10 +1261,9 @@ em {
     background-position: 92% 100%;
     transform-origin: 70% 100%;
   }
+  /* A luz com mix-blend-mode pesa muito no celular e quase não aparece em tela pequena */
   .flow__glow {
-    top: auto;
-    bottom: calc(var(--flow-media-h) * 0.2);
-    width: 110vw;
+    display: none;
   }
   .flow__shade {
     background:
@@ -1379,6 +1384,27 @@ em {
     flex: none;
     text-align: center;
   }
+}
+/* Versão leve (celular/tablet, aplicada pelo JS): foto inteira, título no centro, sem pin */
+.amb--lite .amb__window {
+  clip-path: none;
+}
+.amb--lite .amb__shade {
+  opacity: 1;
+}
+.amb--lite .amb__title {
+  color: var(--cream);
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.1em;
+  padding-block: 0;
+  text-align: center;
+}
+.amb--lite .amb__l,
+.amb--lite .amb__r {
+  flex: none;
+  text-align: center;
 }
 @media (prefers-reduced-motion: reduce) {
   .amb__window {

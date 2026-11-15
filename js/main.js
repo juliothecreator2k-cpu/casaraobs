@@ -11,6 +11,8 @@
      ========================================================== */
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, DrawSVGPlugin);
   gsap.defaults({ ease: 'expo.out', duration: 1 });
+  // No celular, a barra de endereço some/aparece ao rolar: não recalcula tudo por isso
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   const MQ = {
     motion: '(prefers-reduced-motion: no-preference)',
@@ -18,6 +20,9 @@
     desktop: '(min-width: 1024px)',
     fine: '(hover: hover) and (pointer: fine)',
   };
+  // Animações completas (clip-path, pin, blur) só em telas grandes com mouse.
+  // Celular e tablet recebem versões leves, só com transform e opacity.
+  MQ.full = `${MQ.fine} and ${MQ.desktop}`;
 
   const prefersReducedMotion = () => window.matchMedia(MQ.reduce).matches;
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
@@ -72,7 +77,8 @@
      ========================================================== */
   function initSmoother() {
     const mm = gsap.matchMedia();
-    mm.add(MQ.motion, () => {
+    // Em toque a rolagem já é nativa (smoothTouch: false): o smoother só pesaria
+    mm.add(`${MQ.motion} and ${MQ.fine}`, () => {
       smoother = ScrollSmoother.create({
         wrapper: '#smooth-wrapper',
         content: '#smooth-content',
@@ -459,13 +465,16 @@
     const q = gsap.utils.selector(root);
     const mm = gsap.matchMedia();
 
-    mm.add(MQ.motion, () => {
+    mm.add({ motion: MQ.motion, full: MQ.full }, (ctx) => {
+      const { motion, full } = ctx.conditions;
+      if (!motion) return;
+
       const title = SplitText.create(q('.flow__title'), { type: 'lines', mask: 'lines', linesClass: 'split-line' });
       const words = SplitText.create(q('.flow__subtitle'), { type: 'words' });
       const bg = q('.flow__bg')[0];
       const photo = q('.flow__photo')[0];
 
-      // Entrada: a fotografia "abre" da direita para a esquerda e o texto chega em camadas
+      // Entrada: a fotografia se revela e o texto chega em camadas
       const tl = gsap.timeline({
         scrollTrigger: { trigger: root, start: 'top 72%' },
         onComplete: () => {
@@ -474,34 +483,54 @@
           words.revert();
         },
       });
-      tl.fromTo(
-        bg,
-        { clipPath: 'inset(0% 0% 0% 100%)', scale: 1.18 },
-        { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: 2.1, ease: 'expo.inOut', clearProps: 'clipPath' },
-        0,
-      )
-        .from(q('.flow__shade'), { autoAlpha: 0, duration: 1.6, ease: 'power2.out' }, 0.9)
-        .from(q('.flow__ornament .draw'), { drawSVG: '0%', duration: 1.6, stagger: 0.12, ease: 'power2.inOut' }, 0.35)
-        .fromTo(
-          q('.flow__label'),
-          { clipPath: 'inset(0% 100% 0% 0%)' },
-          { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'power3.inOut', clearProps: 'clipPath' },
-          0.55,
+
+      if (full) {
+        // Desktop: a foto "abre" da direita para a esquerda (clip-path) e há desfoque nas palavras
+        tl.fromTo(
+          bg,
+          { clipPath: 'inset(0% 0% 0% 100%)', scale: 1.18 },
+          { clipPath: 'inset(0% 0% 0% 0%)', scale: 1, duration: 2.1, ease: 'expo.inOut', clearProps: 'clipPath' },
+          0,
         )
+          .from(q('.flow__shade'), { autoAlpha: 0, duration: 1.6, ease: 'power2.out' }, 0.9)
+          .fromTo(
+            q('.flow__label'),
+            { clipPath: 'inset(0% 100% 0% 0%)' },
+            { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'power3.inOut', clearProps: 'clipPath' },
+            0.55,
+          )
+          .from(q('.flow__title em'), { letterSpacing: '0.06em', duration: 2, ease: 'power3.out' }, 0.75)
+          .from(words.words, { y: 14, autoAlpha: 0, filter: 'blur(6px)', stagger: 0.035, duration: 1.1, ease: 'power3.out', clearProps: 'filter' }, 1)
+          .from(q('.flow__chef-name'), { y: 18, autoAlpha: 0, filter: 'blur(6px)', duration: 1.2, ease: 'power3.out', clearProps: 'filter' }, 1.4);
+      } else {
+        // Celular/tablet: mesma ideia só com transform e opacity (rodam na GPU)
+        tl.fromTo(bg, { autoAlpha: 0, scale: 1.08 }, { autoAlpha: 1, scale: 1, duration: 1.6, ease: 'power2.out' }, 0)
+          .from(q('.flow__label'), { x: -12, autoAlpha: 0, duration: 1 }, 0.4)
+          .from(words.words, { y: 12, autoAlpha: 0, stagger: 0.03, duration: 0.9, ease: 'power3.out' }, 0.8)
+          .from(q('.flow__chef-name'), { y: 14, autoAlpha: 0, duration: 1, ease: 'power3.out' }, 1.2);
+      }
+
+      tl.from(q('.flow__ornament .draw'), { drawSVG: '0%', duration: 1.6, stagger: 0.12, ease: 'power2.inOut' }, 0.35)
         .from(title.lines, { yPercent: 115, rotate: 3, transformOrigin: '0% 100%', stagger: 0.12, duration: 1.5 }, 0.6)
-        .from(q('.flow__title em'), { letterSpacing: '0.06em', duration: 2, ease: 'power3.out' }, 0.75)
-        .from(words.words, { y: 14, autoAlpha: 0, filter: 'blur(6px)', stagger: 0.035, duration: 1.1, ease: 'power3.out', clearProps: 'filter' }, 1)
         .from(q('.flow__text'), { y: 26, autoAlpha: 0, duration: 1.2 }, 1.2)
         .from(q('.flow__chef-label'), { x: -16, autoAlpha: 0, duration: 1.1 }, 1.3)
-        .from(q('.flow__chef-name'), { y: 18, autoAlpha: 0, filter: 'blur(6px)', duration: 1.2, ease: 'power3.out', clearProps: 'filter' }, 1.4)
         .from(q('.flow__link'), { y: 16, autoAlpha: 0, duration: 1 }, 1.6);
 
-      // Rolagem: a foto se aproxima devagar e o texto flutua num ritmo próprio
+      // Rolagem: a foto se aproxima devagar
       gsap.fromTo(
         photo,
         { scale: 1.1, yPercent: -3 },
         { scale: 1, yPercent: 3, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', scrub: true } },
       );
+
+      if (!full) {
+        return () => {
+          title.revert();
+          words.revert();
+        };
+      }
+
+      // Desktop: o texto flutua num ritmo próprio
       gsap.fromTo(
         q('.flow__content'),
         { y: 50 },
@@ -557,7 +586,27 @@
     const q = gsap.utils.selector(root);
     const mm = gsap.matchMedia();
 
-    mm.add(MQ.motion, () => {
+    // Celular/tablet: sem pin e sem clip-path. A foto aparece inteira com um zoom suave
+    // atrelado à rolagem e os textos entram uma vez (layout em .amb--lite no CSS)
+    mm.add({ motion: MQ.motion, full: MQ.full }, (ctx) => {
+      const { motion, full } = ctx.conditions;
+      if (!motion || full) return;
+      root.classList.add('amb--lite');
+      const stage = q('.amb__stage')[0];
+      gsap.fromTo(
+        q('.amb__window img'),
+        { scale: 1.18 },
+        { scale: 1, ease: 'none', scrollTrigger: { trigger: stage, start: 'top bottom', end: 'bottom top', scrub: true } },
+      );
+      gsap
+        .timeline({ scrollTrigger: { trigger: stage, start: 'top 60%' } })
+        .from(q('.amb__l, .amb__r'), { y: 30, autoAlpha: 0, stagger: 0.12, duration: 1.2 })
+        .from(q('.amb__caption > *'), { y: 24, autoAlpha: 0, stagger: 0.1, duration: 1 }, 0.5);
+      return () => root.classList.remove('amb--lite');
+    });
+
+    // Desktop com mouse: a "janela" em arco se abre com a seção presa na tela
+    mm.add(`${MQ.motion} and ${MQ.full}`, () => {
       const stage = q('.amb__stage')[0];
       const win = q('.amb__window')[0];
 
