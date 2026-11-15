@@ -586,22 +586,19 @@
     const q = gsap.utils.selector(root);
     const mm = gsap.matchMedia();
 
-    // Celular/tablet: sem pin e sem clip-path. A foto aparece inteira com um zoom suave
-    // atrelado à rolagem e os textos entram uma vez (layout em .amb--lite no CSS)
+    // Celular/tablet: sem pin e sem clip-path. Quando a seção chega na tela, a foto
+    // cresce devagar por conta própria (não segue a rolagem) e os textos entram uma vez.
+    // Layout em .amb--lite no CSS
     mm.add({ motion: MQ.motion, full: MQ.full }, (ctx) => {
       const { motion, full } = ctx.conditions;
       if (!motion || full) return;
       root.classList.add('amb--lite');
       const stage = q('.amb__stage')[0];
-      gsap.fromTo(
-        q('.amb__window img'),
-        { scale: 1.18 },
-        { scale: 1, ease: 'none', scrollTrigger: { trigger: stage, start: 'top bottom', end: 'bottom top', scrub: true } },
-      );
       gsap
         .timeline({ scrollTrigger: { trigger: stage, start: 'top 60%' } })
-        .from(q('.amb__l, .amb__r'), { y: 30, autoAlpha: 0, stagger: 0.12, duration: 1.2 })
-        .from(q('.amb__caption > *'), { y: 24, autoAlpha: 0, stagger: 0.1, duration: 1 }, 0.5);
+        .fromTo(q('.amb__window img'), { scale: 1 }, { scale: 1.15, duration: 9, ease: 'power1.out' }, 0)
+        .from(q('.amb__l, .amb__r'), { y: 30, autoAlpha: 0, stagger: 0.12, duration: 1.2 }, 0.2)
+        .from(q('.amb__caption > *'), { y: 24, autoAlpha: 0, stagger: 0.1, duration: 1 }, 0.7);
       return () => root.classList.remove('amb--lite');
     });
 
