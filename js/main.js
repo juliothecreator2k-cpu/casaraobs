@@ -304,6 +304,9 @@
   function initHero() {
     const root = $('.hero');
     const q = gsap.utils.selector(root);
+    // A foto fica fora da <section> (em .hero-scope), para poder seguir fixa pelos serviços
+    const media = $('.hero__media');
+    const bgImg = $('img', media);
 
     // Entrada: montada pausada (escondida sob o preloader) e tocada quando ele sai
     if (window.matchMedia(MQ.motion).matches) {
@@ -312,8 +315,8 @@
       fontsReady().then(() => {
         const tl = gsap.timeline({ paused: true });
 
-        tl.fromTo(q('.hero__bg img'), { scale: 1.2 }, { scale: 1.06, duration: 2.8, ease: 'expo.out' }, 0)
-          .from(q('.hero__shade'), { opacity: 0, duration: 1.8, ease: 'power2.out' }, 0)
+        tl.fromTo(bgImg, { scale: 1.2 }, { scale: 1.06, duration: 2.8, ease: 'expo.out' }, 0)
+          .from($('.hero__shade', media), { opacity: 0, duration: 1.8, ease: 'power2.out' }, 0)
           .set(q('.hero__title'), { autoAlpha: 1 }, 0.4)
           // Logo: o nome se revela da esquerda para a direita, como no preloader
           .fromTo(
@@ -335,11 +338,34 @@
       });
     }
 
-    // Parallax de rolagem e do mouse
+    // Foto fixa na tela do topo do hero até o fim da seção de serviços.
+    // refreshPriority -1: calcula depois do pin dos serviços, que muda a altura da página
+    ScrollTrigger.create({
+      trigger: '.hero-scope',
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: media,
+      pinSpacing: false,
+      refreshPriority: -1,
+      invalidateOnRefresh: true,
+    });
+
+    // A foto escurece conforme a seção de serviços sobe, para destacar os cards.
+    // Só opacidade (barato até no celular); acompanha a rolagem nos dois sentidos
+    gsap.fromTo(
+      $('.hero__dim', media),
+      { opacity: 0 },
+      {
+        opacity: 0.68,
+        ease: 'none',
+        scrollTrigger: { trigger: '.services', start: 'top 85%', end: 'top 15%', scrub: true },
+      },
+    );
+
+    // Rolagem e mouse
     const mm = gsap.matchMedia();
     mm.add(MQ.motion, () => {
       const st = { trigger: root, start: 'top top', end: 'bottom top', scrub: true };
-      gsap.to(q('.hero__bg'), { yPercent: 14, ease: 'none', scrollTrigger: st });
       gsap.to(q('.hero__content'), { y: -80, ease: 'none', scrollTrigger: st });
       gsap.to(q('.hero__content'), {
         autoAlpha: 0,
@@ -349,8 +375,8 @@
     });
 
     mm.add(`${MQ.motion} and ${MQ.fine}`, () => {
-      const bgX = gsap.quickTo(q('.hero__bg img'), 'x', { duration: 1.4, ease: 'power3' });
-      const bgY = gsap.quickTo(q('.hero__bg img'), 'y', { duration: 1.4, ease: 'power3' });
+      const bgX = gsap.quickTo(bgImg, 'x', { duration: 1.4, ease: 'power3' });
+      const bgY = gsap.quickTo(bgImg, 'y', { duration: 1.4, ease: 'power3' });
       const move = (e) => {
         bgX((e.clientX / window.innerWidth - 0.5) * -20);
         bgY((e.clientY / window.innerHeight - 0.5) * -10);
@@ -408,10 +434,11 @@
         });
 
         gsap.fromTo(
-          $('.srv-card__media', card),
-          { clipPath: 'inset(100% 0% 0% 0% round 999px 999px 18px 18px)' },
+          // Revela a foto dentro do arco (a moldura fica sempre visível)
+          $('.srv-card__media img', card),
+          { clipPath: 'inset(100% 0% 0% 0%)' },
           {
-            clipPath: 'inset(0% 0% 0% 0% round 999px 999px 18px 18px)',
+            clipPath: 'inset(0% 0% 0% 0%)',
             duration: 1.4,
             ease: 'expo.inOut',
             scrollTrigger: { trigger: card, containerAnimation: scroller, start: 'left 92%', toggleActions: 'play none none reverse' },
@@ -438,10 +465,11 @@
     mm.add(`${MQ.motion} and (max-width: 1023px)`, () => {
       q('.srv-card').forEach((card) => {
         gsap.fromTo(
-          $('.srv-card__media', card),
-          { clipPath: 'inset(100% 0% 0% 0% round 999px 999px 18px 18px)' },
+          // Revela a foto dentro do arco (a moldura fica sempre visível)
+          $('.srv-card__media img', card),
+          { clipPath: 'inset(100% 0% 0% 0%)' },
           {
-            clipPath: 'inset(0% 0% 0% 0% round 999px 999px 18px 18px)',
+            clipPath: 'inset(0% 0% 0% 0%)',
             duration: 1.4,
             ease: 'expo.inOut',
             scrollTrigger: { trigger: card, start: 'top 85%' },

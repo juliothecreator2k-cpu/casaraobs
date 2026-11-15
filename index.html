@@ -299,127 +299,30 @@
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <main id="conteudo">
-          <section aria-labelledby="hero-title" class="hero" id="inicio">
+          <div class="hero-scope">
+            <!-- Foto do hero: fica fixa na tela até o fim da seção de serviços -->
             <div aria-hidden="true" class="hero__media">
               <div class="hero__bg">
                 <img alt="" fetchpriority="high" src="img/hero-lavatorio.webp" width="1672" height="941" />
               </div>
               <div class="hero__shade"></div>
+              <div class="hero__dim"></div>
             </div>
-            <div class="hero__content wrap">
-              <h1 class="hero__title" id="hero-title">
-                <span aria-label="Casarão Beauty Studio" class="logo hero__logo" role="img"
-                  ><svg aria-hidden="true" class="logo__word" focusable="false" viewBox="0 0 167.60 38.10">
-                    <use href="#casarao-wordmark"></use></svg
-                  ><span aria-hidden="true" class="logo__tag">Beauty Studio</span></span
-                >
-              </h1>
-              <p class="hero__lead">realce o que te faz única</p>
-              <div class="hero__cta">
-                <a class="btn btn--hero" href="#agendar"
-                  ><span class="btn__label" data-text="agendar horário"><span>agendar horário</span></span
-                  ><span class="btn__icon"
-                    ><svg
-                        aria-hidden="true"
-                        fill="none"
-                        focusable="false"
-                        height="18"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        width="18"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg><svg
-                        aria-hidden="true"
-                        fill="none"
-                        focusable="false"
-                        height="18"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        width="18"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg></span></a
-                >
-              </div>
-            </div>
-          </section>
-          <div class="anchor-group" id="servicos">
-            <section aria-labelledby="servicos-title" class="services">
-              <div class="services__viewport">
-                <div class="services__track">
-                  <header class="services__intro">
-                    <p class="label label--light">
-                      <svg
-                        aria-hidden="true"
-                        focusable="false"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        width="14"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 0c.8 6.9 5.1 11.2 12 12-6.9.8-11.2 5.1-12 12-.8-6.9-5.1-11.2-12-12C6.9 11.2 11.2 6.9 12 0Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
-                      Serviços
-                    </p>
-                    <h2 class="services__title" id="servicos-title">Cuidados para cada <em>parte de você.</em></h2>
-                    <p class="services__lead">
-                      Do cabelo às unhas, tudo no mesmo endereço. Combine serviços e saia pronta no mesmo horário.
-                    </p>
-                    <p aria-hidden="true" class="services__hint">
-                      Role para ver todos
-                      <svg
-                        aria-hidden="true"
-                        fill="none"
-                        focusable="false"
-                        height="18"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        width="18"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path>
-                      </svg>
-                    </p>
-                  </header>
-                  <article class="srv-card">
-                    <div class="srv-card__media">
-                      <img
-                        alt="Cabelo longo loiro com cachos definidos"
-                        loading="lazy" decoding="async"
-                        src="img/srv-cabelo.webp?v=2" width="597" height="842"
-                      />
-                    </div>
-                    <div class="srv-card__body">
-                      <span class="srv-card__num">01</span>
-                      <h3 class="srv-card__title">Cabelo</h3>
-                      <p class="srv-card__desc">Cortes, escovas e tratamentos que respeitam a natureza do seu fio.</p>
-                      <ul class="srv-card__list">
-                        <li>Corte feminino</li>
-                        <li>Escova e modelagem</li>
-                        <li>Hidratação e reconstrução</li>
-                        <li>Cronograma capilar</li>
-                        <li>Penteados</li>
-                      </ul>
-                      <a
-                        class="srv-card__link text-link"
-                        href="https://www.trinks.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        >Agendar cabelo
-                        <svg
+            <section aria-labelledby="hero-title" class="hero" id="inicio">
+              <div class="hero__content wrap">
+                <h1 class="hero__title" id="hero-title">
+                  <span aria-label="Casarão Beauty Studio" class="logo hero__logo" role="img"
+                    ><svg aria-hidden="true" class="logo__word" focusable="false" viewBox="0 0 167.60 38.10">
+                      <use href="#casarao-wordmark"></use></svg
+                    ><span aria-hidden="true" class="logo__tag">Beauty Studio</span></span
+                  >
+                </h1>
+                <p class="hero__lead">realce o que te faz única</p>
+                <div class="hero__cta">
+                  <a class="btn btn--hero" href="#agendar"
+                    ><span class="btn__label" data-text="agendar horário"><span>agendar horário</span></span
+                    ><span class="btn__icon"
+                      ><svg
                           aria-hidden="true"
                           fill="none"
                           focusable="false"
@@ -432,38 +335,7 @@
                           width="18"
                           xmlns="http://www.w3.org/2000/svg"
                         >
-                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
-                      ></a>
-                    </div>
-                  </article>
-                  <article class="srv-card srv-card--low">
-                    <div class="srv-card__media">
-                      <img
-                        alt="Unhas stiletto com nail art em vermelho, nude e detalhes dourados"
-                        loading="lazy" decoding="async"
-                        src="img/srv-unhas.webp?v=2" width="490" height="680"
-                      />
-                    </div>
-                    <div class="srv-card__body">
-                      <span class="srv-card__num">02</span>
-                      <h3 class="srv-card__title">Unhas</h3>
-                      <p class="srv-card__desc">
-                        Mãos e pés bem cuidados, com materiais esterilizados e esmaltação que dura.
-                      </p>
-                      <ul class="srv-card__list">
-                        <li>Manicure e pedicure</li>
-                        <li>Esmaltação em gel</li>
-                        <li>Alongamento</li>
-                        <li>Spa dos pés</li>
-                        <li>Nail art</li>
-                      </ul>
-                      <a
-                        class="srv-card__link text-link"
-                        href="https://www.trinks.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        >Agendar unhas
-                        <svg
+                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg><svg
                           aria-hidden="true"
                           fill="none"
                           focusable="false"
@@ -476,134 +348,266 @@
                           width="18"
                           xmlns="http://www.w3.org/2000/svg"
                         >
-                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
-                      ></a>
-                    </div>
-                  </article>
-                  <article class="srv-card">
-                    <div class="srv-card__media">
-                      <img
-                        alt="Mulher com sobrancelhas desenhadas e delineado marcado, segurando o perfume para cabelos Casarão"
-                        loading="lazy" decoding="async"
-                        src="img/srv-sobrancelhas.webp?v=2" width="611" height="550"
-                        style="object-position: 40% 35%"
-                      />
-                    </div>
-                    <div class="srv-card__body">
-                      <span class="srv-card__num">03</span>
-                      <h3 class="srv-card__title">Sobrancelhas e cílios</h3>
-                      <p class="srv-card__desc">Design que valoriza o seu olhar, do traço natural ao mais marcado.</p>
-                      <ul class="srv-card__list">
-                        <li>Design de sobrancelhas</li>
-                        <li>Henna</li>
-                        <li>Brow lamination</li>
-                        <li>Lash lifting</li>
-                        <li>Extensão de cílios</li>
-                      </ul>
-                      <a
-                        class="srv-card__link text-link"
-                        href="https://www.trinks.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        >Agendar sobrancelhas e cílios
-                        <svg
-                          aria-hidden="true"
-                          fill="none"
-                          focusable="false"
-                          height="18"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                          viewBox="0 0 24 24"
-                          width="18"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
-                      ></a>
-                    </div>
-                  </article>
-                  <article class="srv-card srv-card--low">
-                    <div class="srv-card__media">
-                      <img alt="Noiva com maquiagem marcante, penteado preso e véu" loading="lazy" decoding="async" src="img/srv-maquiagem.webp?v=3" width="606" height="468" style="object-position: 55% 30%" />
-                    </div>
-                    <div class="srv-card__body">
-                      <span class="srv-card__num">04</span>
-                      <h3 class="srv-card__title">Maquiagem</h3>
-                      <p class="srv-card__desc">
-                        Produções para o dia a dia, para eventos e para o dia do seu casamento.
-                      </p>
-                      <ul class="srv-card__list">
-                        <li>Maquiagem social</li>
-                        <li>Noivas</li>
-                        <li>Madrinhas e formandas</li>
-                        <li>Penteado com make</li>
-                      </ul>
-                      <a
-                        class="srv-card__link text-link"
-                        href="https://www.trinks.com/"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        >Agendar maquiagem
-                        <svg
-                          aria-hidden="true"
-                          fill="none"
-                          focusable="false"
-                          height="18"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                          viewBox="0 0 24 24"
-                          width="18"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
-                      ></a>
-                    </div>
-                  </article>
-                  <div class="services__outro">
-                    <p class="services__outro-title">Quer combinar mais de um serviço?</p>
-                    <p class="services__outro-text">
-                      Monte seu horário com tudo o que você quer fazer. A gente organiza a ordem e o tempo de cada
-                      etapa.
-                    </p>
-                    <a class="btn btn--light" href="#agendar"
-                      ><span class="btn__label" data-text="Montar meu horário"><span>Montar meu horário</span></span
-                      ><span class="btn__icon"
-                        ><svg
-                          aria-hidden="true"
-                          fill="none"
-                          focusable="false"
-                          height="18"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                          viewBox="0 0 24 24"
-                          width="18"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
-                        ><svg
-                          aria-hidden="true"
-                          fill="none"
-                          focusable="false"
-                          height="18"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                          viewBox="0 0 24 24"
-                          width="18"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg></span
-                    ></a>
-                  </div>
+                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg></span></a
+                  >
                 </div>
               </div>
             </section>
+            <div class="anchor-group" id="servicos">
+              <section aria-labelledby="servicos-title" class="services">
+                <div class="services__viewport">
+                  <div class="services__track">
+                    <header class="services__intro">
+                      <p class="label label--light">
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          width="14"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 0c.8 6.9 5.1 11.2 12 12-6.9.8-11.2 5.1-12 12-.8-6.9-5.1-11.2-12-12C6.9 11.2 11.2 6.9 12 0Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                        Serviços
+                      </p>
+                      <h2 class="services__title" id="servicos-title">Cuidados para cada <em>parte de você.</em></h2>
+                      <p class="services__lead">
+                        Do cabelo às unhas, tudo no mesmo endereço. Combine serviços e saia pronta no mesmo horário.
+                      </p>
+                      <p aria-hidden="true" class="services__hint">
+                        Role para ver todos
+                        <svg
+                          aria-hidden="true"
+                          fill="none"
+                          focusable="false"
+                          height="18"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          width="18"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path>
+                        </svg>
+                      </p>
+                    </header>
+                    <article class="srv-card">
+                      <div class="srv-card__media">
+                        <img
+                          alt="Cabelo longo loiro com cachos definidos"
+                          loading="lazy" decoding="async"
+                          src="img/srv-cabelo.webp?v=2" width="597" height="842"
+                        />
+                      </div>
+                      <div class="srv-card__body">
+                        <span class="srv-card__num">01</span>
+                        <h3 class="srv-card__title">Cabelo</h3>
+                        <p class="srv-card__desc">Cortes, escovas e tratamentos que respeitam a natureza do seu fio.</p>
+                        <ul class="srv-card__list">
+                          <li>Corte feminino</li>
+                          <li>Escova e modelagem</li>
+                          <li>Hidratação e reconstrução</li>
+                          <li>Cronograma capilar</li>
+                          <li>Penteados</li>
+                        </ul>
+                        <a
+                          class="srv-card__link text-link"
+                          href="https://www.trinks.com/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          >Agendar cabelo
+                          <svg
+                            aria-hidden="true"
+                            fill="none"
+                            focusable="false"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
+                        ></a>
+                      </div>
+                    </article>
+                    <article class="srv-card srv-card--low">
+                      <div class="srv-card__media">
+                        <img
+                          alt="Unhas stiletto com nail art em vermelho, nude e detalhes dourados"
+                          loading="lazy" decoding="async"
+                          src="img/srv-unhas.webp?v=2" width="490" height="680"
+                        />
+                      </div>
+                      <div class="srv-card__body">
+                        <span class="srv-card__num">02</span>
+                        <h3 class="srv-card__title">Unhas</h3>
+                        <p class="srv-card__desc">
+                          Mãos e pés bem cuidados, com materiais esterilizados e esmaltação que dura.
+                        </p>
+                        <ul class="srv-card__list">
+                          <li>Manicure e pedicure</li>
+                          <li>Esmaltação em gel</li>
+                          <li>Alongamento</li>
+                          <li>Spa dos pés</li>
+                          <li>Nail art</li>
+                        </ul>
+                        <a
+                          class="srv-card__link text-link"
+                          href="https://www.trinks.com/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          >Agendar unhas
+                          <svg
+                            aria-hidden="true"
+                            fill="none"
+                            focusable="false"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
+                        ></a>
+                      </div>
+                    </article>
+                    <article class="srv-card">
+                      <div class="srv-card__media">
+                        <img
+                          alt="Mulher com sobrancelhas desenhadas e delineado marcado, segurando o perfume para cabelos Casarão"
+                          loading="lazy" decoding="async"
+                          src="img/srv-sobrancelhas.webp?v=2" width="611" height="550"
+                          style="object-position: 40% 35%"
+                        />
+                      </div>
+                      <div class="srv-card__body">
+                        <span class="srv-card__num">03</span>
+                        <h3 class="srv-card__title">Sobrancelhas e cílios</h3>
+                        <p class="srv-card__desc">Design que valoriza o seu olhar, do traço natural ao mais marcado.</p>
+                        <ul class="srv-card__list">
+                          <li>Design de sobrancelhas</li>
+                          <li>Henna</li>
+                          <li>Brow lamination</li>
+                          <li>Lash lifting</li>
+                          <li>Extensão de cílios</li>
+                        </ul>
+                        <a
+                          class="srv-card__link text-link"
+                          href="https://www.trinks.com/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          >Agendar sobrancelhas e cílios
+                          <svg
+                            aria-hidden="true"
+                            fill="none"
+                            focusable="false"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
+                        ></a>
+                      </div>
+                    </article>
+                    <article class="srv-card srv-card--low">
+                      <div class="srv-card__media">
+                        <img alt="Noiva com maquiagem marcante, penteado preso e véu" loading="lazy" decoding="async" src="img/srv-maquiagem.webp?v=3" width="606" height="468" style="object-position: 55% 30%" />
+                      </div>
+                      <div class="srv-card__body">
+                        <span class="srv-card__num">04</span>
+                        <h3 class="srv-card__title">Maquiagem</h3>
+                        <p class="srv-card__desc">
+                          Produções para o dia a dia, para eventos e para o dia do seu casamento.
+                        </p>
+                        <ul class="srv-card__list">
+                          <li>Maquiagem social</li>
+                          <li>Noivas</li>
+                          <li>Madrinhas e formandas</li>
+                          <li>Penteado com make</li>
+                        </ul>
+                        <a
+                          class="srv-card__link text-link"
+                          href="https://www.trinks.com/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          >Agendar maquiagem
+                          <svg
+                            aria-hidden="true"
+                            fill="none"
+                            focusable="false"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
+                        ></a>
+                      </div>
+                    </article>
+                    <div class="services__outro">
+                      <p class="services__outro-title">Quer combinar mais de um serviço?</p>
+                      <p class="services__outro-text">
+                        Monte seu horário com tudo o que você quer fazer. A gente organiza a ordem e o tempo de cada
+                        etapa.
+                      </p>
+                      <a class="btn btn--light" href="#agendar"
+                        ><span class="btn__label" data-text="Montar meu horário"><span>Montar meu horário</span></span
+                        ><span class="btn__icon"
+                          ><svg
+                            aria-hidden="true"
+                            fill="none"
+                            focusable="false"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg
+                          ><svg
+                            aria-hidden="true"
+                            fill="none"
+                            focusable="false"
+                            height="18"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            width="18"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5"></path></svg></span
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
           <div class="anchor-group" id="experiencia">
             <section aria-labelledby="flow-title" class="flow">

@@ -706,20 +706,35 @@ em {
 /* ==========================================================
    Hero
    ========================================================== */
-.hero {
-  --hero-base: #2f271c;
+/* Hero + Serviços dividem a mesma foto de fundo, que o JS mantém fixa na tela
+   até o fim da seção de serviços */
+.hero-scope {
   position: relative;
+  background: #2f271c;
+  isolation: isolate;
+}
+.hero {
+  position: relative;
+  z-index: 1;
   height: 100svh;
   min-height: 640px;
   overflow: hidden;
-  background: var(--hero-base);
   color: #fbf7ee;
-  isolation: isolate;
 }
 .hero__media {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 0;
+  width: 100%;
+  height: max(100vh, 640px);
+  overflow: hidden;
+}
+@supports (height: 100lvh) {
+  /* lvh: altura com a barra do celular recolhida, para não sobrar faixa ao rolar */
+  .hero__media {
+    height: max(100lvh, 640px);
+  }
 }
 .hero__bg {
   position: absolute;
@@ -742,6 +757,14 @@ em {
   background:
     radial-gradient(48% 34% at 50% 60%, rgba(36, 28, 18, 0.5), rgba(36, 28, 18, 0) 100%),
     linear-gradient(180deg, rgba(40, 31, 20, 0.12) 0%, rgba(40, 31, 20, 0.3) 100%);
+}
+/* Escurece a foto fixa quando a seção de serviços chega (opacidade animada no JS) */
+.hero__dim {
+  position: absolute;
+  inset: 0;
+  background: #17130e;
+  opacity: 0;
+  pointer-events: none;
 }
 .hero__content.wrap {
   position: relative;
@@ -853,20 +876,11 @@ em {
    ========================================================== */
 .services {
   position: relative;
-  background: var(--deep);
+  z-index: 1;
+  /* Sem fundo próprio: a foto fixa do hero aparece por trás */
+  background: transparent;
   color: var(--cream);
   overflow: hidden;
-}
-.services::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    80% 60% at 12% 20%,
-    rgba(169, 176, 143, 0.12),
-    transparent 70%
-  );
-  pointer-events: none;
 }
 .services__title {
   color: var(--cream);
@@ -915,14 +929,11 @@ em {
   overflow: hidden;
   border-radius: 999px 999px 18px 18px;
   background: var(--deep-2);
-}
-.srv-card__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgba(243, 237, 225, 0.12);
-  pointer-events: none;
+  /* Moldura: verde-oliva com um filete bege no meio, acompanhando o arco */
+  box-shadow:
+    0 0 0 4px var(--olive),
+    0 0 0 5.5px #e6d8bb,
+    0 0 0 10px var(--olive);
 }
 .srv-card__media img {
   position: absolute;
